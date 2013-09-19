@@ -31,6 +31,7 @@ def main():
 ##            pickle.load( open('./profiles/' + profiles[opt].name, 'wb') )
 ##        else:
 ##            #init hero
+##
 ##            hero = hr.Hero()
 
     #check for loops in player.py
@@ -67,6 +68,7 @@ def main():
 
     # eval loop
     while True:
+        hero.rope()
         for m in monsters:
             h = m.monsterFeel(l)
             if len(h) != 0:
@@ -77,14 +79,10 @@ def main():
         player.turn(hero)
         # update map
         l.display()
-        hero.rope()
 
 
 
-
-
-
-    #pickle.dump( hero, open('./profiles/' + profiles[opt].name, 'wb') )
+##    pickle.dump( hero, open('./profiles/' + profiles[opt].name, 'wb') )
 
 
 

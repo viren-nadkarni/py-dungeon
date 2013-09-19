@@ -40,22 +40,29 @@ class Hero(base_unit.BaseUnit):
     def move(self,dir):
             position=self.heroPosition()
             try:
-                if self.feel(dir) ==' ':
+                if self.feel(dir) ==' ' or self.feel(dir) == 'R':
                     self.lvl.map[position[0]][position[1]]=' '
                     if(dir=='left'):
                         self.lvl.map[position[0]][position[1]-1]='H'
                     elif dir=='right':
                         self.lvl.map[position[0]][position[1]+1]='H'
                     elif dir=='up':
-                        self.lvl.map[position[0]][1,position[1]]='H'
+                        self.lvl.map[position[0]-1][position[1]]='H'
                     elif dir=='down':
-                        self.lvl.map[position[0]][1,position[1]]='H'
+                        self.lvl.map[position[0]+1][position[1]]='H'
             except IndexError:
                 print "There is no escape!"
                 sys.exit()
+
     def rope(self):
         position=self.heroPosition()
-            if position[0]<(len(self.lvl.map[0]-1) and position[1]<len(self.lvl.map[1]-1):
-                    self.lvl.map[position[0]][position[1]+1] or 
-            print "LEVEL COMPLETE!"
-            sys.exit()
+        #print "position is"
+        print position
+        try:
+            if self.lvl.map[position[0]][position[1]+1]=='R':
+                print "Level Complete"
+                sys.exit()
+        except:
+            print "this is getting fucked"
+
+      
