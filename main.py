@@ -12,7 +12,7 @@
 import sys
 
 from units import hero as hr
-import levels
+from levels import levels
 
 def main():
 
@@ -28,8 +28,11 @@ def main():
     hero = hr.Hero()
 
     #load the map
-    l = level()
+    l = levels.level()
     l.level1()
+    print hero.position(l)
+    hero.walk("right",l)
+    print hero.position(l)
     currentMonsterMap = l.map
 
     #load the monsters
