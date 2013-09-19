@@ -14,7 +14,7 @@ class Map:
         for i in xrange( len( self.map ) ):
             sys.stdout.write('|')
             for j in xrange( len( self.map[i] ) ):
-                sys.stdout.write(self.map[i][j]+'|')
+                sys.stdout.write(str(self.map[i][j])+'|')
             sys.stdout.write("\n")
             a=0
             

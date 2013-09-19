@@ -11,8 +11,12 @@
 
 import base_unit
 
-class Maru(BaseUnit):
-    def __init__():
-        health = max_health = 30
-        attack_power = 15
-    
+class Maru(base_unit.BaseUnit):
+    def __init__(self):
+        self.health = max_health = 30
+        self.attack_power = 15
+    def __str__(self):
+    	return 'm'
+
+    def rhealth(self):
+        return self.health    

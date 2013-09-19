@@ -12,7 +12,7 @@
 import sys
 import os
 import pickle
-
+from units import varkey,varkey_badass,maru
 from units import hero as hr
 from levels import levels
 
@@ -43,41 +43,51 @@ def main():
 
     #load the map
     l = levels.level()
-    l.level1()
+    l.level3()
     currentMonsterMap = l.map
 
     hero = hr.Hero(l)
 
     #load the monsters
     monsters =[]
+    i=0
     for a in currentMonsterMap:
         for b in range(0, len(a)):
-            if a == 'v':
-                currentMonsterMap[a][b] = units.Varke()
-                monsters.append(currentMonsterMap[a][b])
-            if a == 'V':
-                currentMonsterMap[a][b] = units.VarkeBadass()
-                monsters.append(currentMonsterMap[a][b])
-            if a == 'm':
-                currentMonsterMap[a][b] = units.Maru()
-                monsters.append(currentMonsterMap[a][b])
-
+            if a[b] == 'v':
+                currentMonsterMap[i][b] = varkey.Varkey()
+                monsters.append(currentMonsterMap[i][b])
+            if a[b] == 'V':
+                currentMonsterMap[i][b] = varkeybadass.VarkeyBadass()
+                monsters.append(currentMonsterMap[i][b])
+            if a[b] == 'm':
+                currentMonsterMap[i][b] = maru.Maru()
+                monsters.append(currentMonsterMap[i][b])
+        i+=1
     # read player.py
     import player
-
     # eval loop
     while True:
         for m in monsters:
-            h = m.monsterFeel(l)
-            if len(h) != 0:
+           h = m.monsterFeel(l)
+           print m.findPosition(l)
+           if h==False or h==True:
+                pass
+           else:
                 if not m.attack(hero):
-                    print 'Hero is dead'
-                    sys.exit()
-
+                   print 'Hero is dead'
+                   sys.exit()
+                if m.rhealth()<=0:
+                    print str(m),' died'
+                    position = m.findPosition(l)
+                    currentMonsterMap[position[0]][position[1]]=' '
+                    monsters.remove(m)
+                    break
+        print hero.rhealth()
         player.turn(hero)
         # update map
         l.display()
-    hero.rope()
+        print "\n\n"
+    
 
 
 
