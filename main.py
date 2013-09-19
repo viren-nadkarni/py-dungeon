@@ -43,7 +43,7 @@ def main():
 
     #load the map
     l = levels.level()
-    l.level3()
+    l.level5()
     currentMonsterMap = l.map
 
     hero = hr.Hero(l)
@@ -57,7 +57,7 @@ def main():
                 currentMonsterMap[i][b] = varkey.Varkey()
                 monsters.append(currentMonsterMap[i][b])
             if a[b] == 'V':
-                currentMonsterMap[i][b] = varkeybadass.VarkeyBadass()
+                currentMonsterMap[i][b] = varkey_badass.VarkeyBadass()
                 monsters.append(currentMonsterMap[i][b])
             if a[b] == 'm':
                 currentMonsterMap[i][b] = maru.Maru()

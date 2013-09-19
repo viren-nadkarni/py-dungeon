@@ -5,8 +5,9 @@
 #if __name__ == '__main__':
 def turn(hero):
     # your code here
-    if hero.feel('right')==' ':
-    	hero.move('right')
+    print hero.optwalk()
+    if hero.feel(hero.optwalk())==' ':
+    	hero.move(hero.optwalk())
     else:
-    	hero.attack(hero.feel('right'))
+    	hero.attack(hero.feel(hero.optwalk()))
 
