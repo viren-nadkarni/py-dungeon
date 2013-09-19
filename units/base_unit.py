@@ -21,32 +21,42 @@ class BaseUnit:
         if self.health <= 0:
             return False
         return True
-        
+        if not m.attack(hero):
+                   print 'Hero is dead'
+                
     def attack(self, unit):
+        print str(unit),' took ',str(self.attack_power)
         return unit.take_damage(self.attack_power)
         
     def findPosition(self,lvl):
         x=0
         y=0
+        z=0
+        v=str(self)
         for i in lvl.map:
-            if 'H' in i:
-                y=i.index('H')
-                break
-            else:
+            for j in lvl.map[x]:
+                if type(j)==type(self):
+                    y=i.index(j)
+                    z=1
+                    break
+            if z==0:
                 x+=1
         return [x,y]    
     
-    def monsterFeel(self,lvl):
-        position = self.findPosition(self,lvl)
-        try:
-            if lvl.map[position[0],position[1]-1] == 'H':
-                return [ position[0], position[1]-1 ]
-            if lvl.map[position[0],position[1]+1] == 'H':
-                return [ position[0],position[1]-1 ]
-            if lvl.map[position[0]-1,position[1]] == 'H':
-                return [position[0],position[1]-1]
-            if lvl.map[position[0]+1,position[1]] == 'H':
-                return [position[0],position[1]-1]
-            
-        except :
-            return False
+    def monsterFeel(self,lvl,unit='H'):
+            position = self.findPosition(lvl)
+            if position[1]!=0:
+                if lvl.map[position[0]][position[1]-1] == 'H':
+                    return [ position[0], position[1]-1 ]
+            if position[1]!=(len(lvl.map[0])-1):
+                if lvl.map[position[0]][position[1]+1] == 'H':
+                    return [ position[0],position[1]-1 ]
+            if len(lvl.map)!=1:
+                if position[0]!=0:
+                    if lvl.map[position[0]-1][position[1]] == 'H':
+                        return [position[0],position[1]-1]
+                if position[0]!=(len(lvl.map[0])-1):
+                    if lvl.map[position[0]+1][position[1]] == 'H':
+                        return [position[0],position[1]-1]
+            return True
+        

@@ -23,25 +23,30 @@ class Hero(base_unit.BaseUnit):
         return [x,y]
 
     def feel(self,dir):
-            position=self.heroPosition()
-            try:
+                position=self.heroPosition()
                 if(dir=='left'):
+                    if self.lvl.map[position[0]][position[1]-1]=='R':
+                        self.rope()
                     return self.lvl.map[position[0]][position[1]-1]
                 elif dir=='right':
+                    if self.lvl.map[position[0]][position[1]+1]=='R':
+                        self.rope()
                     return self.lvl.map[position[0]][position[1]+1]
-                elif dir=='up':
-                    return self.lvl.map[position[0]-1][position[1]]
-                elif dir=='down':
-                    return self.lvl.map[position[0]+1][position[1]]
-            except IndexError:
-                print "There is no escape!"
+                if len(lvl.map)!=1:
+                    if dir=='up':
+                        if self.lvl.map[position[0]-1][position[1]]=='R':
+                            self.rope()
+                        return self.lvl.map[position[0]-1][position[1]]
+                    elif dir=='down':
+                        if self.lvl.map[position[0]+1][position[1]]=='R':
+                            self.rope()
+                        return self.lvl.map[position[0]+1][position[1]]
                 sys.exit()
     def rope(self):
         position=self.heroPosition()
-        if position[0]<(len(self.lvl.map[0])-1) and position[1]<(len(self.lvl.map[1])-1):
-                    self.lvl.map[position[0]][position[1]+1] 
-        print "LEVEL COMPLETE!"
-        sys.exit()
+        if position[0]<=(len(self.lvl.map)-1) and position[1]<=(len(self.lvl.map[0])-1):
+            print "LEVEL COMPLETE!"
+            sys.exit()
 
     def move(self,dir):
             position=self.heroPosition()
@@ -61,4 +66,8 @@ class Hero(base_unit.BaseUnit):
             except IndexError:
                 print "There is no escape!"
                 sys.exit()
-    
+    def rhealth(self):
+        return self.health   
+
+    def __str__(self):
+        return "H"
