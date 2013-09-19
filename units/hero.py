@@ -1,6 +1,6 @@
 import base_unit
 
-class Hero(BaseUnit):
+class Hero(base_unit.BaseUnit):
     def __init__(self):
         self.max_health = 100
         self.attack_power = 25
@@ -22,25 +22,25 @@ class Hero(BaseUnit):
         return [x,y]
             
     def feel(self,dir,lvl):
-            position=position(self,lvl)
+            pstn=self.position(lvl)
             if(dir=='left'):
-                return lvl.map[position[0],position[1]-1]
+                return lvl.map[pstn[0]][pstn[1]-1]
             elif dir=='right':
-                return lvl.map[position[0],position[1]+1]
+                return lvl.map[pstn[0]][pstn[1]+1]
             elif dir=='up':
-                return lvl.map[position[0]-1,position[1]]
+                return lvl.map[pstn[0]-1][pstn[1]]
             elif dir=='down':
-                return lvl.map[position[0]+1,position[1]]
+                return lvl.map[pstn[0]+1][pstn[1]]
               
     def walk(self,dir,lvl):
-            position=position(self,lvl)
-            if feel(self,dir,lvl) ==' ':
-                lvl.map[position[0],position[1]]=' '
+            pstn=self.position(lvl)
+            if self.feel(dir,lvl) ==' ':
+                lvl.map[pstn[0]][pstn[1]]=' '
                 if(dir=='left'):
-                    lvl.map[position[0],position[1]-1]='H'
+                    lvl.map[pstn[0]][pstn[1]-1]='H'
                 elif dir=='right':
-                    lvl.map[position[0],position[1]+1]='H'
+                    lvl.map[pstn[0]][pstn[1]+1]='H'
                 elif dir=='up':
-                    lvl.map[position[0]-1,position[1]]='H'
+                    lvl.map[pstn[0]-1][pstn[1]]='H'
                 elif dir=='down':
-                    lvl.map[position[0]+1,position[1]]='H'
+                    lvl.map[pstn[0]+1][pstn[1]]='H'
