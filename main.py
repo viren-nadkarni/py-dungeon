@@ -11,7 +11,6 @@
 
 import sys
 import os
-import pickle
 import time
 
 from units import varkey, varkey_badass, maru
@@ -32,45 +31,9 @@ def main():
 
         '''
 
-
     #load the map
     l = levels.level()
     print 'TURN 1'
-
-##    profiles = os.listdir('./profiles/')
-##    #try:
-##    profiles = os.listdir('./profiles/')
-##
-##    if len(profiles) != 0:
-##        print 'Saved sessions found:'
-##        print '[0] New session'
-##        for x in range(0, len(profiles) ):
-##            print '[' + str(x + 1) + '] ' + profiles[x]
-##
-##        opt = int(input(''))
-##
-##        if opt > 0:
-##            hero = pickle.load( open('./profiles/' + profiles[opt - 1], 'rb') )
-##            playerName = hero.heroName
-##
-##
-##            print hero.currentLevel
-##            if hero.currentLevel > 5:
-##                print 'All levels cleared'
-##                sys.exit()
-##
-##            print 'The hero is at level ' + str(hero.currentLevel)
-##            print ''
-##
-##        elif opt == 0:
-##            print 'What is the name of the brave warrior?'
-##            playerName = str( raw_input('') )
-##    else:
-##        print 'What is the name of the brave warrior?'
-##        playerName = str( raw_input('') )
-##
-##    #except:
-##    #    pass
 
     #check for loops in player.py
     f = open('player.py', 'r')
@@ -131,7 +94,6 @@ def main():
 
 
     print '=' * 80
-
     # eval loop
     counter = 2
     while True:
@@ -140,19 +102,19 @@ def main():
 
         for m in monsters:
            h = m.monsterFeel(l)
-           if h==False or h==True:
+           if h == False or h == True:
                 pass
            else:
                 if not m.attack(hero):
                     print 'Hero is dead'
                     sys.exit()
-                if m.rhealth()<=0:
+                if m.rhealth() <= 0:
                     print str(m),' died'
                     position = m.findPosition(l)
-                    currentMonsterMap[position[0]][position[1]]=' '
+                    currentMonsterMap[position[0]][position[1]] = ' '
                     monsters.remove(m)
                     break
-        print "HEALTH:",hero.rhealth()
+        print "HEALTH:", hero.rhealth()
         player.turn(hero)
 
         # update map
