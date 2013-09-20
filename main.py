@@ -12,59 +12,92 @@
 import sys
 import os
 import pickle
+import time
 
-from units import varkey,varkey_badass,maru
+from units import varkey, varkey_badass, maru
 from units import hero as hr
 from levels import levels
 
 opt = 0
 profiles = []
-
-def saveAndExit():
-    pickle.dump( hero, open('./profiles/' + profiles[opt].name, 'wb') )
-    sys.exit()
+hero = None
 
 def main():
-    profiles = os.listdir('./profiles/')
+    print '''
+        H -> Hero
+        v -> Small varkid spider
+        V -> Big varkid spider
+        m -> Monster!
+        R -> Rope (end of the level)
+
+        '''
+
 
     #load the map
     l = levels.level()
+    print 'TURN 1'
 
-    try:
-        profiles = os.listdir('./profiles/')
-        if len(profiles) != 0:
-            print 'Saved sessions found:'
-            print '[0] New session'
-            for x in range(0, len(profiles) ):
-                print '[' + str(x + 1) + '] ' + profiles[x]
-
-            opt = int(input(''))
-
-            if opt > 0:
-                pickle.load( open('./profiles/' + profiles[opt], 'wb') )
-        else:
-            print 'What is the name of the brave warrior?'
-            playerName = str( raw_input('') )
-    except:
-        pass
+##    profiles = os.listdir('./profiles/')
+##    #try:
+##    profiles = os.listdir('./profiles/')
+##
+##    if len(profiles) != 0:
+##        print 'Saved sessions found:'
+##        print '[0] New session'
+##        for x in range(0, len(profiles) ):
+##            print '[' + str(x + 1) + '] ' + profiles[x]
+##
+##        opt = int(input(''))
+##
+##        if opt > 0:
+##            hero = pickle.load( open('./profiles/' + profiles[opt - 1], 'rb') )
+##            playerName = hero.heroName
+##
+##
+##            print hero.currentLevel
+##            if hero.currentLevel > 5:
+##                print 'All levels cleared'
+##                sys.exit()
+##
+##            print 'The hero is at level ' + str(hero.currentLevel)
+##            print ''
+##
+##        elif opt == 0:
+##            print 'What is the name of the brave warrior?'
+##            playerName = str( raw_input('') )
+##    else:
+##        print 'What is the name of the brave warrior?'
+##        playerName = str( raw_input('') )
+##
+##    #except:
+##    #    pass
 
     #check for loops in player.py
     f = open('player.py', 'r')
     content = f.read()
-
-    if content.find('while') != -1 or content.find('for') != -1:
-        print 'The player can have only one move per turn of player.py'
-        sys.exit()
+##
+##    if content.find('while') != -1 or content.find('for') != -1:
+##        print 'The player can have only one move per turn of player.py\nLoops are not allowed'
+##        sys.exit()
 
     #check if hero already created
     try:
         hero
     except:
         #if not, then create it
+##        print 'What is the name of the brave warrior?'
+##        playerName = str( raw_input('') )
+        playerName = 'Khal Grognak'
         hero = hr.Hero(l, playerName)
 
     #select the level
-    levelToLoad = hero.currentLevel
+    levelToLoad = int((open('savefile', 'r')).read())
+    hero.currentLevel = levelToLoad
+
+    if levelToLoad > 5:
+        print 'The hero has escaped the dungeon!'
+        print 'ALL LEVELS COMPLETE'
+        sys.exit()
     if levelToLoad == 1:
         l.level1()
     elif levelToLoad == 2:
@@ -96,31 +129,37 @@ def main():
     # read player.py
     import player
 
+
+    print '=' * 80
+
     # eval loop
+    counter = 2
     while True:
+        print 'TURN ' + str(counter)
+        counter += 1
+
         for m in monsters:
            h = m.monsterFeel(l)
            if h==False or h==True:
                 pass
            else:
                 if not m.attack(hero):
-                   print 'Hero is dead'
-                   sys.exit()
+                    print 'Hero is dead'
+                    sys.exit()
                 if m.rhealth()<=0:
                     print str(m),' died'
                     position = m.findPosition(l)
                     currentMonsterMap[position[0]][position[1]]=' '
                     monsters.remove(m)
                     break
-        print "Bhai Health:",hero.rhealth()
+        print "HEALTH:",hero.rhealth()
         player.turn(hero)
 
         # update map
         l.display()
         print ''
-        print ''
-
-
+        print '=' * 80
+        time.sleep(1)
 
 if __name__ == '__main__':
     main()

@@ -22,12 +22,12 @@ class BaseUnit:
             return False
         return True
         if not m.attack(hero):
-                   print 'Hero is dead'
-                
+                   print 'Hero dies :('
+
     def attack(self, unit):
-        print str(unit),' took ',str(self.attack_power)
+        print str(unit),' is damaged by ',str(self.attack_power)
         return unit.take_damage(self.attack_power)
-        
+
     def findPosition(self,lvl):
         x=0
         y=0
@@ -42,8 +42,8 @@ class BaseUnit:
                     break
             if z==0:
                 x+=1
-        return [x,y]    
-    
+        return [x,y]
+
     def monsterFeel(self,lvl,unit='H'):
             position = self.findPosition(lvl)
             if position[1]!=0:
@@ -60,4 +60,4 @@ class BaseUnit:
                     if lvl.map[position[0]+1][position[1]] == 'H':
                         return [position[0],position[1]-1]
             return True
-        
+
