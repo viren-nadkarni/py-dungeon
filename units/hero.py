@@ -7,9 +7,10 @@ class Hero(base_unit.BaseUnit):
         self.attack_power = 25
         self.health = 100
 
-    def rest():
-        if health < max_health and health + max_health/10 < max_health:
-            health += max_health/10
+    def rest(self):
+            self.health += self.max_health/10
+            if self.health>self.max_health:
+                self.health=self.max_health
 
     def heroPosition(self):
         x=0

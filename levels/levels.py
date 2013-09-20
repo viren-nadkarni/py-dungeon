@@ -13,7 +13,7 @@ class level(Map):
 
     def level3(self):
         self.level = 3
-        self.map = [['H',' ','v',' ','v',' ','R']]
+        self.map = [['H',' ','v',' ','m',' ','R']]
         self.display()
 
     def level4(self):
@@ -26,6 +26,6 @@ class level(Map):
     def level5(self):
         self.level = 5
         self.map = [['H','V',' '],
-                    [' ',' ',' '],
-                    [' ','V','R']]
+                    [' ',' ','v'],
+                    [' ',' ','R']]
         self.display()
