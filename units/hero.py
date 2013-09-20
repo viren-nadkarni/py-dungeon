@@ -25,23 +25,35 @@ class Hero(base_unit.BaseUnit):
     def feel(self,dir):
                 position=self.heroPosition()
                 if(dir=='left'):
-                    if self.lvl.map[position[0]][position[1]-1]=='R':
-                        self.rope()
-                    return self.lvl.map[position[0]][position[1]-1]
+                    if position[1]!=0:
+                        if self.lvl.map[position[0]][position[1]-1]=='R':
+                            self.rope()
+                        return self.lvl.map[position[0]][position[1]-1]
+                    else:
+                        return self.feel('up')
                 elif dir=='right':
-                    if self.lvl.map[position[0]][position[1]+1]=='R':
-                        self.rope()
-                    return self.lvl.map[position[0]][position[1]+1]
+                    if position[1]+1!=len(self.lvl.map[0]):
+                        if self.lvl.map[position[0]][position[1]+1]=='R':
+                            self.rope()
+                        return self.lvl.map[position[0]][position[1]+1]
+                    else:
+                        return self.feel('down')
                 if len(self.lvl.map)!=1:
                     if dir=='up':
-                        if self.lvl.map[position[0]-1][position[1]]=='R':
-                            self.rope()
-                        return self.lvl.map[position[0]-1][position[1]]
+                        if position[0]!=0:
+                            if self.lvl.map[position[0]-1][position[1]]=='R':
+                                self.rope()
+                            return self.lvl.map[position[0]-1][position[1]]
+                        else:
+                            return self.feel('left')
                     elif dir=='down':
-                        if self.lvl.map[position[0]+1][position[1]]=='R':
-                            self.rope()
-                        return self.lvl.map[position[0]+1][position[1]]
-                sys.exit()
+                        if position[0]!=len(self.lvl.map[0]):
+                            if self.lvl.map[position[0]+1][position[1]]=='R':
+                                self.rope()
+                            return self.lvl.map[position[0]+1][position[1]]
+                        else:
+                            return self.feel('right')
+
     def rope(self):
         position=self.heroPosition()
         if position[0]<=(len(self.lvl.map)-1) and position[1]<=(len(self.lvl.map[0])-1):
