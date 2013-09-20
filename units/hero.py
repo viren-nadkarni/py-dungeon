@@ -5,7 +5,7 @@ import pickle
 class Hero(base_unit.BaseUnit):
     def __init__(self, lvl, name):
         self.heroName = name
-        self.currentLevel = 1
+        self.currentLevel = None
 
         self.lvl = lvl
         self.max_health = 100
@@ -13,9 +13,10 @@ class Hero(base_unit.BaseUnit):
         self.health = 100
 
     def rest(self):
-            self.health += self.max_health/10
-            if self.health>self.max_health:
-                self.health=self.max_health
+        self.health += self.max_health/10
+        if self.health>self.max_health:
+            self.health=self.max_health
+        print 'Hero rests'
 
     def heroPosition(self):
         x=0
@@ -62,12 +63,43 @@ class Hero(base_unit.BaseUnit):
 
     def rope(self):
         position=self.heroPosition()
+        #print position
+
         if position[0] <= (len(self.lvl.map)-1) and position[1] <= (len(self.lvl.map[0])-1):
 
-            print "The hero reaches the rope!\nOn to the next level!"
             self.currentLevel += 1
+            print '\nThe hero reaches the rope!\nOn to the next level (' + str(self.currentLevel) + ")!"
+            (open('savefile', 'w')).write(str(self.currentLevel))
 
-            saveAndExit()
+            storyLines = [
+'''
+## LEVEL 2
+## That almost seemed too easy..
+## OH NO! It was a set up. Hero is now faced with the varkid spider! Is this the
+## end?
+''',
+'''
+## LEVEL 3
+## Too close. Thank goodness Hero Bhai had your help.
+## GOOD LORD! The varkid spider has brought along her sinister friend, Mr. Monster!
+## Can out brave hero fend against them BOTH?
+''',
+'''
+## LEVEL 4
+## After ages of captivity, Hero thanks you for your help in bringing him this
+## far.
+## But now, because the developers of this game want to show off, Hero must
+## face the horrors of TWO DIMENSIONS!
+''',
+'''
+## LEVEL 5
+## What's this? The spiders have taken their time to regenerate and become
+## stronger! Can Hero brave through NOT ONE but TWO Big Varkid Spiders?!
+''']
+
+            story = open('player.py', 'a')
+            if self.currentLevel < 6:
+                story.write(storyLines[self.currentLevel - 2])
             sys.exit()
 
     def move(self,dir):
@@ -88,6 +120,7 @@ class Hero(base_unit.BaseUnit):
             except IndexError:
                 print "The hero hits the wall"
                 sys.exit()
+            print 'Hero moves ' + dir
 
     def rhealth(self):
         return self.health
