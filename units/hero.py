@@ -1,7 +1,12 @@
 import base_unit
 import sys
+import pickle
+
 class Hero(base_unit.BaseUnit):
-    def __init__(self, lvl):
+    def __init__(self, lvl, name):
+        self.heroName = name
+        self.currentLevel = 1
+
         self.lvl = lvl
         self.max_health = 100
         self.attack_power = 25
@@ -57,8 +62,12 @@ class Hero(base_unit.BaseUnit):
 
     def rope(self):
         position=self.heroPosition()
-        if position[0]<=(len(self.lvl.map)-1) and position[1]<=(len(self.lvl.map[0])-1):
-            print "LEVEL COMPLETE!"
+        if position[0] <= (len(self.lvl.map)-1) and position[1] <= (len(self.lvl.map[0])-1):
+
+            print "The hero reaches the rope!\nOn to the next level!"
+            self.currentLevel += 1
+
+            saveAndExit()
             sys.exit()
 
     def move(self,dir):
@@ -77,13 +86,15 @@ class Hero(base_unit.BaseUnit):
                 elif self.feel(dir) == 'R':
                     self.rope()
             except IndexError:
-                print "There is no escape!"
+                print "The hero hits the wall"
                 sys.exit()
+
     def rhealth(self):
-        return self.health   
+        return self.health
 
     def __str__(self):
         return "H"
+
     def optwalk(self):
         x=0
         y=0
