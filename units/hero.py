@@ -14,26 +14,26 @@ class Hero(base_unit.BaseUnit):
 
     def rest(self):
         self.health += self.max_health/10
-        if self.health>self.max_health:
-            self.health=self.max_health
+        if self.health > self.max_health:
+            self.health = self.max_health
         print 'Hero rests'
 
     def heroPosition(self):
-        x=0
-        y=0
+        x = 0
+        y = 0
         for i in self.lvl.map:
             if 'H' in i:
-                y=i.index('H')
+                y = i.index('H')
                 break
             else:
-                x+=1
+                x += 1
         return [x,y]
 
     def feel(self,dir):
-                position=self.heroPosition()
-                if(dir=='left'):
-                    if position[1]!=0:
-                        if self.lvl.map[position[0]][position[1]-1]=='R':
+                position = self.heroPosition()
+                if dir == 'left':
+                    if position[1] != 0:
+                        if self.lvl.map[position[0]][position[1]-1] == 'R':
                             self.rope()
                         return self.lvl.map[position[0]][position[1]-1]
                     else:
