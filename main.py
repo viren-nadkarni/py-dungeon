@@ -43,7 +43,7 @@ def main():
 
     #load the map
     l = levels.level()
-    l.level5()
+    l.level6()
     currentMonsterMap = l.map
 
     hero = hr.Hero(l)
