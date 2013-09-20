@@ -36,9 +36,8 @@ class BaseUnit:
         for i in lvl.map:
             z=0
             for j in xrange(0,len(lvl.map[0])):
-                print i,' ',j
                 if type(lvl.map[x][j])==type(self):
-                    y=i.index(v)
+                    y=j
                     z=1
                     break
             if z==0:
