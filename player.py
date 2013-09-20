@@ -7,7 +7,10 @@ def turn(hero):
     # your code here
     print hero.optwalk()
     if hero.feel(hero.optwalk())==' ':
-    	hero.move(hero.optwalk())
+    	if hero.rhealth()<100:
+    		hero.rest()
+    	else:
+    		hero.move(hero.optwalk())
     else:
     	hero.attack(hero.feel(hero.optwalk()))
 

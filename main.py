@@ -43,7 +43,7 @@ def main():
 
     #load the map
     l = levels.level()
-    l.level6()
+    l.level5()
     currentMonsterMap = l.map
 
     hero = hr.Hero(l)
@@ -69,7 +69,6 @@ def main():
     while True:
         for m in monsters:
            h = m.monsterFeel(l)
-           print m.findPosition(l)
            if h==False or h==True:
                 pass
            else:
@@ -82,7 +81,7 @@ def main():
                     currentMonsterMap[position[0]][position[1]]=' '
                     monsters.remove(m)
                     break
-        print hero.rhealth()
+        print "Bhai Health:",hero.rhealth()
         player.turn(hero)
         # update map
         l.display()
