@@ -38,7 +38,7 @@ def main():
     content = f.read()
 
     if content.find('while') != -1 or content.find('for') != -1:
-        print 'Loops are not allowed in player.py'
+        print 'The player can have only one move per turn of player.py'
         sys.exit()
 
     #load the map
