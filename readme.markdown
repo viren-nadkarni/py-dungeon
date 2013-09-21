@@ -1,14 +1,14 @@
-# PyWarrior
-PyWarrior is a game which makes learning Python and Artificial Intelligence fun.
+# PyDungeon
+PyDungeon is a game which makes learning Python and Artificial Intelligence fun.
 
 You play as a hero trapped in a dungeon. The hero must kill all the monsters and reach the rope, which marks the end of the dungeon level. To control the actions of the hero, you must write a python script.
 
-PyWarrior was made at the Techyon 2013 hackathon with [@flamesalchemist](http://github.com/sahilc) and [@vanarp96](http://github.com/vanarp96).
+PyDungeon was made at the Techyon 2013 hackathon with [@flamesalchemist](http://github.com/sahilc) and [@vanarp96](http://github.com/vanarp96).
 
 ### Playing
 Put your python code in `player.py` before running `main.py`
 
-PyWarrior is somewhat turn-based. The method `turn()` is called and so are those of the monsters present in the level alternatively. 
+PyDungeon is somewhat turn-based. The method `turn()` is called and so are those of the monsters present in the level alternatively. 
 
 The hero is represented by object `hero`. It can perform following actions, defined as its member methods:
 
