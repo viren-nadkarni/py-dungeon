@@ -17,6 +17,7 @@ The hero is represented by object `hero`. It can perform following actions, defi
 * `hero.feel(direction)` Returns what is there in given direction
 * `hero.move(direction)` Move in given direction
 * `hero.optmove()` returns the direction the hero should move to reach the rope
+* `hero.attack(target)` Attack a target; target should be `H`, `v`, `V`, `m` or `R`
 
 Note that loops are not allowed in `player.py`
 
