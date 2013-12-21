@@ -11,10 +11,10 @@ class BaseUnit:
             return False
         return True
         if not m.attack(hero):
-                   print 'Hero is dead'
+            print 'Hero is dead'
 
     def attack(self, unit):
-        print str(unit),' is damaged by ',str(self.attack_power)
+        print str(unit), ' is damaged by ', str(self.attack_power)
         return unit.take_damage(self.attack_power)
 
     def findPosition(self,lvl):

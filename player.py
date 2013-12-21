@@ -4,17 +4,21 @@
 
 # the hero is represented by object 'hero'
 # hero can perform several actions such as movement, attacking etc.
-# actions can be performed by saying
+# actions can be performed by running
 #    hero.move('left')
-# other possible actions are:
-#    hero.rest()              -> restores 10% of the health
-#    hero.feel(direction)     -> returns what is there in 'direction'
-#    hero.move(direction)     -> move in 'direction'
-#        direction can be 'left', 'right', 'up', 'down'
-#    hero.optmove()           -> returns the direction the hero should move to 
-#                                reach the rope
-# note that loops are not allowed
+# read the readme for all actions
 
 def turn(hero):
     # your code here
-    pass
+    if hero.feel( hero.optwalk() ) == ' ':
+        if hero.rhealth() < 100:
+            hero.rest()
+        else:
+            hero.move(hero.optwalk())
+    else:
+        hero.attack(hero.feel(hero.optwalk()))
+
+## LEVEL 3
+## Too close. Thank goodness Hero had your help.
+## GOOD LORD! The varkid spider has brought along her sinister friend, Mr. Monster!
+## Can out brave hero fend against them BOTH?
