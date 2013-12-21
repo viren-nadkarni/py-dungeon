@@ -50,7 +50,7 @@ def main():
         hero = hr.Hero(l, playerName)
 
     #select the level
-    levelToLoad = int((open('savefile', 'r')).read())
+    levelToLoad = int( (open('savefile', 'r')).read() )
     hero.currentLevel = levelToLoad
 
     if levelToLoad > 5:
@@ -69,6 +69,8 @@ def main():
         l.level5()
     currentMonsterMap = l.map
 
+    g.set_map(l)
+    
     #load the monsters
     monsters =[]
     i = 0
@@ -120,8 +122,10 @@ def main():
         l.display()
         print ''
         print '=' * 80
+        paramDict['level'] = l
         g.update(paramDict)
         time.sleep(1)
+    g.quit()
         
 
 if __name__ == '__main__':
