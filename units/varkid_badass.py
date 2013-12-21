@@ -1,12 +1,12 @@
 import base_unit
 
-class Maru(base_unit.BaseUnit):
+class VarkidBadass(base_unit.BaseUnit):
     def __init__(self):
-        self.health = max_health = 30
+        self.health = max_health = 120
         self.attack_power = 15
     
     def __str__(self):
-    	return 'm'
+    	return 'V'
 
     def rhealth(self):
-        return self.health    
+        return self.health

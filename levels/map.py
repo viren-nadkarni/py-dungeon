@@ -1,4 +1,5 @@
 import sys
+
 class Map:
     def __init__(self):
         self.level = 0
