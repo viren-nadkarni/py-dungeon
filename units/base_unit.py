@@ -1,14 +1,3 @@
-#-------------------------------------------------------------------------------
-# Name:        /units/base.py
-# Purpose:
-#
-# Author:      viren
-#
-# Created:     19/09/2013
-# Copyright:   (c) viren 2013
-# Licence:     <your licence>
-#-------------------------------------------------------------------------------
-
 class BaseUnit:
     health = int()
     attack_power = int()
@@ -22,7 +11,7 @@ class BaseUnit:
             return False
         return True
         if not m.attack(hero):
-                   print 'Hero dies :('
+                   print 'Hero is dead'
 
     def attack(self, unit):
         print str(unit),' is damaged by ',str(self.attack_power)

@@ -1,19 +1,8 @@
-#-------------------------------------------------------------------------------
-# Name:        module1
-# Purpose:
-#
-# Author:      viren
-#
-# Created:     19/09/2013
-# Copyright:   (c) viren 2013
-# Licence:     <your licence>
-#-------------------------------------------------------------------------------
-
 import sys
 import os
 import time
 
-from units import varkey, varkey_badass, maru
+from units import varkid, varkid_badass, maru
 from units import hero as hr
 from levels import levels
 
@@ -50,7 +39,7 @@ def main():
         #if not, then create it
 ##        print 'What is the name of the brave warrior?'
 ##        playerName = str( raw_input('') )
-        playerName = 'Khal Grognak'
+        playerName = 'Hero Name'
         hero = hr.Hero(l, playerName)
 
     #select the level
@@ -79,10 +68,10 @@ def main():
     for a in currentMonsterMap:
         for b in range(0, len(a)):
             if a[b] == 'v':
-                currentMonsterMap[i][b] = varkey.Varkey()
+                currentMonsterMap[i][b] = varkid.varkid()
                 monsters.append(currentMonsterMap[i][b])
             if a[b] == 'V':
-                currentMonsterMap[i][b] = varkey_badass.VarkeyBadass()
+                currentMonsterMap[i][b] = varkid_badass.varkidBadass()
                 monsters.append(currentMonsterMap[i][b])
             if a[b] == 'm':
                 currentMonsterMap[i][b] = maru.Maru()

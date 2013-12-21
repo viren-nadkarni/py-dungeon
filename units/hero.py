@@ -80,7 +80,7 @@ class Hero(base_unit.BaseUnit):
 ''',
 '''
 ## LEVEL 3
-## Too close. Thank goodness Hero Bhai had your help.
+## Too close. Thank goodness Hero had your help.
 ## GOOD LORD! The varkid spider has brought along her sinister friend, Mr. Monster!
 ## Can out brave hero fend against them BOTH?
 ''',
