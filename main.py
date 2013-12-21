@@ -5,10 +5,12 @@ import time
 from units import varkid, varkid_badass, maru
 from units import hero as hr
 from levels import levels
+from game import game
 
 opt = 0
 profiles = []
 hero = None
+paramDict = {}
 
 def main():
     print '''
@@ -23,6 +25,11 @@ def main():
     #load the map
     l = levels.level()
     print 'TURN 1'
+    
+    g = game.Game()
+    paramDict['turn'] = 1
+    paramDict['health'] = 100
+    
 
     #check for loops in player.py
     f = open('player.py', 'r')
@@ -81,12 +88,13 @@ def main():
     # read player.py
     import player
 
-
+    
     print '=' * 80
     # eval loop
     counter = 2
     while True:
         print 'TURN ' + str(counter)
+        paramDict['turn'] = counter
         counter += 1
 
         for m in monsters:
@@ -96,21 +104,25 @@ def main():
            else:
                 if not m.attack(hero):
                     print 'Hero is dead'
+                    paramDict['alert'] = 1
                     sys.exit()
                 if m.rhealth() <= 0:
-                    print str(m),' died'
+                    print str(m),' was killed'
                     position = m.findPosition(l)
                     currentMonsterMap[position[0]][position[1]] = ' '
                     monsters.remove(m)
                     break
         print "HEALTH:", hero.rhealth()
+        paramDict['health'] = hero.rhealth()
         player.turn(hero)
 
         # update map
         l.display()
         print ''
         print '=' * 80
+        g.update(paramDict)
         time.sleep(1)
+        
 
 if __name__ == '__main__':
     main()
