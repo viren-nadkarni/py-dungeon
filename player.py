@@ -17,8 +17,3 @@ def turn(hero):
             hero.move(hero.optwalk())
     else:
         hero.attack(hero.feel(hero.optwalk()))
-
-## LEVEL 3
-## Too close. Thank goodness Hero had your help.
-## GOOD LORD! The varkid spider has brought along her sinister friend, Mr. Monster!
-## Can out brave hero fend against them BOTH?
