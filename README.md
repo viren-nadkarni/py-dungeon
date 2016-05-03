@@ -7,7 +7,9 @@ PyDungeon was conceived at the Techyon 2013 hackathon with [@flamesalchemist](ht
 
 ### Getting Started
 To install PyDungeon,
+
 ```
+apt install python-pygame
 git clone git://github.com/viren-nadkarni/py-dungeon.git
 cd py-dungeon
 python setup.py install
@@ -39,3 +41,5 @@ An example dungeon
     V - badass varkid (hitpoints = 120, attack = 15)
     m - maru monster (hitpoints = 30, attack = 15)
     R - rope; marks the end of level
+
+PyDungeon has an experiment graphical mode. Use `-g` flag to launch it.

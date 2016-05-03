@@ -1,6 +1,7 @@
 import sys
 import os
 import time
+import argparse
 
 from units import varkid, varkid_badass, maru
 from units import hero as hr
@@ -13,6 +14,13 @@ hero = None
 paramDict = {}
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-g", help="launch the experimental pygame interface", action="store_true")
+    args = parser.parse_args()
+
+    if args.g:
+        g = game.Game()
+
     print '''
         H -> Hero
         v -> Small varkid spider
@@ -26,7 +34,6 @@ def main():
     l = levels.level()
     print 'TURN 1'
     
-    g = game.Game()
     paramDict['turn'] = 1
     paramDict['health'] = 100
     
@@ -40,6 +47,7 @@ def main():
 ##        sys.exit()
 
     #check if hero already created
+
     try:
         hero
     except:
@@ -69,7 +77,8 @@ def main():
         l.level5()
     currentMonsterMap = l.map
 
-    g.set_map(l)
+    if args.g:
+        g.set_map(l)
     
     #load the monsters
     monsters =[]
@@ -123,9 +132,12 @@ def main():
         print ''
         print '=' * 80
         paramDict['level'] = l
-        g.update(paramDict)
+        if args.g:
+            g.update(paramDict)
         time.sleep(1)
-    g.quit()
+
+    if args.g:
+        g.quit()
         
 
 if __name__ == '__main__':

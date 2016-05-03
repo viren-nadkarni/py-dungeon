@@ -6,17 +6,17 @@ class Game:
         pygame.init()
 
         self.display = pygame.display.set_mode( (400, 300), 0, 32)
-        pygame.display.set_caption('PyDungeon')
+        pygame.display.set_caption('pydungeon')
         
         self.font = pygame.font.Font('freesansbold.ttf', 16)
         self.display.fill(c.grey)
         
-        self.w_img = pygame.image.load('./res/w.png')
-        self.v1_img = pygame.image.load('./res/v1.png')        
-        self.v2_img = pygame.image.load('./res/v2.png')        
-        self.h_img = pygame.image.load('./res/h.png')        
-        self.m_img = pygame.image.load('./res/m.png')
-        self.r_img = pygame.image.load('./res/r.png')
+        self.w_img = pygame.image.load('./assets/w.png')
+        self.v1_img = pygame.image.load('./assets/v1.png')        
+        self.v2_img = pygame.image.load('./assets/v2.png')        
+        self.h_img = pygame.image.load('./assets/h.png')        
+        self.m_img = pygame.image.load('./assets/m.png')
+        self.r_img = pygame.image.load('./assets/r.png')
     
     def set_map(self, level):
         self.l = level
