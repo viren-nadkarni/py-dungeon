@@ -1,3 +1,14 @@
 *.swp
-*.pyc
+*.py[cod]
 *~
+.Python
+env/
+build/
+develop-eggs/
+dist/
+eggs/
+.eggs/
+sdist/
+*.egg-info/
+.installed.cfg
+*.egg

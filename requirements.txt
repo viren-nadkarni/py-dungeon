@@ -1,1 +1,1 @@
-hg+http://bitbucket.org/pygame/pygame
+#hg+http://bitbucket.org/pygame/pygame#egg=1.9.1
