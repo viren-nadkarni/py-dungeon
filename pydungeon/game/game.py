@@ -1,22 +1,23 @@
-import pygame, sys
+import pygame, sys, os
 import colors as c
 
 class Game:
     def __init__(self):
         pygame.init()
 
+        self.data_path = os.path.join(os.path.dirname(__file__),'../assets')
         self.display = pygame.display.set_mode( (400, 300), 0, 32)
         pygame.display.set_caption('pydungeon')
         
         self.font = pygame.font.Font('freesansbold.ttf', 16)
         self.display.fill(c.grey)
         
-        self.w_img = pygame.image.load('./assets/w.png')
-        self.v1_img = pygame.image.load('./assets/v1.png')        
-        self.v2_img = pygame.image.load('./assets/v2.png')        
-        self.h_img = pygame.image.load('./assets/h.png')        
-        self.m_img = pygame.image.load('./assets/m.png')
-        self.r_img = pygame.image.load('./assets/r.png')
+        self.w_img = pygame.image.load(os.path.join(self.data_path, 'w.png'))
+        self.v1_img = pygame.image.load(os.path.join(self.data_path, 'v1.png'))
+        self.v2_img = pygame.image.load(os.path.join(self.data_path, 'v2.png'))
+        self.h_img = pygame.image.load(os.path.join(self.data_path, 'h.png'))
+        self.m_img = pygame.image.load(os.path.join(self.data_path, 'm.png'))
+        self.r_img = pygame.image.load(os.path.join(self.data_path, 'r.png'))
     
     def set_map(self, level):
         self.l = level

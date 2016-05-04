@@ -1,2 +1,6 @@
-include *.txt *.png savefile
+include *.txt *.md
+recursive-include pydungeon/assets *
+
+
+
 
