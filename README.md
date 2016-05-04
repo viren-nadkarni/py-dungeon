@@ -48,3 +48,6 @@ An example dungeon
     R - rope; marks the end of level
 
 PyDungeon has an experiment graphical mode. Use `pydungeon -g` to launch it.
+
+![PyDungeon](./pydungeon_001.png)
+
