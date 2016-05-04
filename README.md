@@ -15,7 +15,12 @@ cd py-dungeon
 python setup.py install
 ```
 
-Put your python code in `player.py` before running `main.py`
+```
+pydungeon -i
+```
+This will create `pydungeon.save` and `player.py`
+
+Put your python code in `player.py` before running `pydungeon` again.
 
 PyDungeon is somewhat turn-based. The method `turn()` is called and so are those of the monsters present in the level alternatively. 
 
@@ -42,4 +47,4 @@ An example dungeon
     m - maru monster (hitpoints = 30, attack = 15)
     R - rope; marks the end of level
 
-PyDungeon has an experiment graphical mode. Use `-g` flag to launch it.
+PyDungeon has an experiment graphical mode. Use `pydungeon -g` to launch it.

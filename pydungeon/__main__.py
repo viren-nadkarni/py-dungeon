@@ -2,6 +2,7 @@ import sys
 import os
 import time
 import argparse
+import shutil
 
 from units import varkid, varkid_badass, maru
 from units import hero as hr
@@ -16,10 +17,29 @@ paramDict = {}
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-g", help="launch the experimental pygame interface", action="store_true")
+    parser.add_argument("-i", help="initialise save file and story", action="store_true")
     args = parser.parse_args()
+
+    if args.i:
+        with open('pydungeon.save', 'w') as init_f:
+            init_f.write('1')
+        shutil.copyfile(os.path.dirname(os.path.realpath(__file__)) + '/player.py', os.getcwd() + '/player.py')
+        print 'pydungeon initialized'
+        sys.exit()
+
 
     if args.g:
         g = game.Game()
+   
+    #check for loops in player.py
+    f = open('player.py', 'r')
+    content = f.read()
+##
+##    if content.find('while') != -1 or content.find('for') != -1:
+##        print 'The player can have only one move per turn of player.py\nLoops are not allowed'
+##        sys.exit()
+
+    #check if hero already created
 
     print '''
         H -> Hero
@@ -36,18 +56,7 @@ def main():
     
     paramDict['turn'] = 1
     paramDict['health'] = 100
-    
-
-    #check for loops in player.py
-    f = open('player.py', 'r')
-    content = f.read()
-##
-##    if content.find('while') != -1 or content.find('for') != -1:
-##        print 'The player can have only one move per turn of player.py\nLoops are not allowed'
-##        sys.exit()
-
-    #check if hero already created
-
+ 
     try:
         hero
     except:
@@ -58,7 +67,7 @@ def main():
         hero = hr.Hero(l, playerName)
 
     #select the level
-    levelToLoad = int( (open('savefile', 'r')).read() )
+    levelToLoad = int( (open('pydungeon.save', 'r')).read() )
     hero.currentLevel = levelToLoad
 
     if levelToLoad > 5:
