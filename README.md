@@ -3,7 +3,7 @@ PyDungeon is a game which makes learning Python and Artificial Intelligence fun.
 
 You play as a hero trapped in a dungeon. The hero must kill all the monsters and reach the rope, which marks the end of the dungeon level. To control the actions of the hero, you must write a python script.
 
-PyDungeon was conceived at the Techyon 2013 hackathon with [@flamesalchemist](http://github.com/sahilc) and [@vanarp96](http://github.com/vanarp96).
+PyDungeon was conceived at the Techyon 2013 hackathon with [@flamesalchemist](http://github.com/sahilc) and [@pranavprem](http://github.com/pranavprem).
 
 ### Getting Started
 To install PyDungeon,
